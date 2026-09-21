@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30ea8174b3ee9eb4f95c587c91ed8034, type: 3}
+  m_Name: SO_ItemData_Pistol
+  m_EditorClassIdentifier: Assembly-CSharp::SO_ItemData
+  ItemId: Pistol
+  ItemName: Pistol
+  Description: 
+  Icon: {fileID: 21300000, guid: 58f92eedab994be49a2be960ceb216a1, type: 3}
+  Category: 0
+  Type: 0
+  IsStackable: 0
+  MaxStack: 1
+  WorldPrefab: {fileID: 1216094465622195831, guid: 82958a31a412ea14586023343de9a8aa, type: 3}
+  ConsumeEffectAmount: 0

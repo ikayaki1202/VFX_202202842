@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4c8e1be390e5134dbad821801e067a4, type: 3}
+  m_Name: SO_PlatformConfigData_Desktop
+  m_EditorClassIdentifier: Assembly-CSharp::SO_PlatformConfigData
+  CurrentPlatform: 0
+  ConfigName: Keyboard, Mouse
+  Gravity: -9.81
+  PlayerRotSpeed: 0.1
+  WalkSpeed: 1.5
+  RunSpeed: 3.5
+  Friction: 0.9
+  ClimbSpeed: 1.2
+  ClimbOffset: 0.1
+  JumpHeight: 1
+  MantleCheckDistance: 0.6
+  MantleMaxLedgeDrop: 1.5
+  MantleDuration: 0.25
+  canSnapTurn: 1
+  snapTurnThreshold: 0.5
+  canvasRenderMode: 1
+  canvasPlaneDistance: 1
+  canvasWorldScale: {x: 0.001, y: 0.001, z: 0.001}
+  PointMaxDistance: 20
+  GrabMaxDistance: 10
+  TelekinesisFollowSpeed: 15
+  TelekinesisRotationSpeed: 360
+  PullFlySpeed: 10
+  PullArrivalThreshold: 0.05
+  MaxThrowSpeed: 15
+  AimLineWidth: 0.01
+  UseAimedThrow: 1
+  AimedThrowSpeed: 12
