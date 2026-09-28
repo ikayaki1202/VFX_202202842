@@ -21,7 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Mat_SG_Steam
-  m_Shader: {fileID: -6465566751694194690, guid: aa5c03ede3a23c649b1711cdbe92e46d, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 91ce6e95669ff9a4297364eee4d17641, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -77,8 +77,16 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_67c17929654a4813a9ea34d190270d4e_Texture_1_Texture2D:
+        m_Texture: {fileID: 2800000, guid: 4c2eb7ffec4d50c42919d663076cc3c7, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _SampleTexture2D_b3e675a5917147b8b23f65971902bb05_Texture_1_Texture2D:
         m_Texture: {fileID: 10300, guid: 0000000000000000f000000000000000, type: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_e8baaef354614591ac9b6c8926e7fb5a_Texture_1_Texture2D:
+        m_Texture: {fileID: 2800000, guid: bbcd580dfaa8c6d43b4e0770a8e660aa, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SpecGlossMap:
@@ -114,6 +122,7 @@ Material:
     - _DstBlend: 0
     - _DstBlendAlpha: 0
     - _EnvironmentReflections: 1
+    - _Float: 0.5
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
