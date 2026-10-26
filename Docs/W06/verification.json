@@ -1,34 +1,39 @@
 {
-  "status_label": "직접 클릭 사격 재검증 완료",
+  "variant": "glass_water",
+  "status_label": "유리·물 구슬 제작 및 실행 검증 완료",
   "verification_date": "2026.10.26",
   "checks": [
     [
       "Game 뷰 클릭 사격",
       "통과",
-      "마우스 클릭 3회, Single 발사 로그 3회. 금속·목재·콘크리트 각 1회 적중, 총알 간 충돌 없음."
+      "별도 입력 검사: Single 발사 4회, 유리 3회·물 1회 명중. 발사 메서드 직접 호출 없이 실제 클릭으로 확인."
     ],
     [
-      "실제 클릭 효과",
+      "구슬 표면과 파편",
       "통과",
-      "direct_fire의 재질별 화면에서 금속 스파크, 목재 조각·불씨와 탄흔, 콘크리트 파편·탄흔 확인."
+      "최종 시연에서 긴 구면 균열, 투명 유리 파편, 물 표면의 변형·감쇠 파동, 굴절 물방울을 확인."
     ],
     [
-      "자동 시연 외형",
+      "빗맞음·초기화",
       "통과",
-      "기존 F6 영상에서 트레일과 목재 디졸브 확인. 자동 시연 15발은 클릭 사격 횟수에 포함하지 않음."
+      "본체 밖·감지 영역 안으로 보낸 물리 총알 2발의 추가 명중 0. Input System의 R 키 이벤트로 균열·충격 초기화 확인."
     ],
     [
-      "씬·컴파일",
+      "원본 배경·컴파일",
       "통과",
-      "원본 배경 14개 루트·3,113개 Transform 보존. 누락 MonoBehaviour 0, 컴파일 실패 없음."
+      "배경 14개 루트·3,113개 Transform, 변경 0. 누락 스크립트 0, 구슬 셰이더 컴파일 오류 없음."
     ],
     [
       "Unity Recorder",
       "완료",
-      "Completed / 852프레임 / 15발. 자동 시연 demoComplete=true."
+      "두 구슬 각 5회, 총 10회 명중. 754프레임, Completed / demoComplete=true."
     ]
   ],
-  "video_file": "Deliverables/W06_202202842.mp4 / H.264, 1920x1080, 30fps, 28.37초 / 30,333,119 bytes",
-  "submission_state": "직접 클릭 사격 수정 9066654 Push 완료 / W06 브랜치 / https://github.com/ikayaki1202/VFX_202202842/tree/W06",
-  "additional_observations": []
+  "video_file": "Deliverables/W06_202202842.mp4 / H.264, 1920x1080, 30fps, 25.1초 / 25,791,103 bytes",
+  "submission_state": "유리·물 구슬 버전 / W06 브랜치 / https://github.com/ikayaki1202/VFX_202202842/tree/W06",
+  "additional_observations": [
+    "클릭 검증의 조준은 잠시 고정했고 발사는 실제 마우스 입력으로 실행했다. 추가 수동 플레이에서도 유리 30회·물 16회 명중과 균열 최대 5개를 관측했다.",
+    "orb_click_log.json에는 에디터 QuickInstall의 문자열 변환 예외 1건이 포함된다. 게임 피탄 경로의 예외는 아니며 최종 재생을 재시작해 상태를 확인했다.",
+    "첫 클릭 증거의 물 파편은 이전 밝은 입자 재질이다. 최종 파편 외형은 orbs/video_* 화면과 새 MP4가 기준이다."
+  ]
 }

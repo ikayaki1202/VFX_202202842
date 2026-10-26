@@ -1,0 +1,16 @@
+{
+  "hits": [
+    {
+      "name": "Target_Glass_HW",
+      "meter": 3,
+      "surface": 3,
+      "cracks": 3
+    },
+    {
+      "name": "Target_Water_HW",
+      "meter": 1,
+      "surface": 1,
+      "cracks": 0
+    }
+  ]
+}

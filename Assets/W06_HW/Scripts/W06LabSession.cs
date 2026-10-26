@@ -18,7 +18,6 @@ namespace W06Homework
         public bool demoRunning;
         public int shotsFired;
         Coroutine demo;
-        readonly string[] phases = { "01 / METAL   —   SPARK & IMPACT", "02 / WOOD   —   CHIP & EMBER", "03 / CONCRETE   —   HEAVY DEBRIS" };
 
         IEnumerator Start()
         {
@@ -30,7 +29,7 @@ namespace W06Homework
                 player.GetComponentInChildren<Player_Inventory>()?.AddItem(rifle);
                 player.GetComponentInChildren<Player_GrabBehavior>()?.Equip(rifle);
             }
-            SetLabel("LIVE FIRE / THREE MATERIALS");
+            SetLabel("TRACE / GLASS & WATER");
         }
 
         void Update()
@@ -52,13 +51,14 @@ namespace W06Homework
 
         public void ClearMarks()
         {
+            foreach (var orb in FindObjectsByType<W06ReactiveOrb>(FindObjectsSortMode.None)) orb.ResetSurface();
             foreach (var decal in FindObjectsByType<UnityEngine.Rendering.Universal.DecalProjector>(FindObjectsSortMode.None))
                 if (decal.transform.root.name.StartsWith("Decal_HW_")) Destroy(decal.transform.root.gameObject);
         }
 
         public void BeginShowcase()
         {
-            if (demoRunning || !showcaseCamera || targets == null || targets.Length != 3 || !projectile) return;
+            if (demoRunning || !showcaseCamera || targets == null || targets.Length == 0 || !projectile) return;
             ClearMarks();
             demoComplete = false;
             shotsFired = 0;
@@ -76,30 +76,30 @@ namespace W06Homework
             demoRunning = false;
             showcaseCamera.gameObject.SetActive(false);
             player.SetActive(true);
-            SetLabel("LIVE FIRE / THREE MATERIALS");
+            SetLabel("TRACE / GLASS & WATER");
         }
 
         IEnumerator Showcase()
         {
-            SetLabel("TRACE / IMPACT LAB     •     MATERIAL STUDY 06");
+            SetLabel("TRACE / GLASS & WATER     •     MATERIAL STUDY 06");
             showcaseCamera.fieldOfView = 49;
             yield return MoveCamera(zoneOrigin + new Vector3(-1.3f, 3.3f, -5.3f), zoneOrigin + new Vector3(0, 2, 6), 2.5f, true);
             for (int i = 0; i < targets.Length; i++)
             {
-                SetLabel(phases[i]);
+                SetLabel(targets[i].name.Contains("Glass") ? "01 / GLASS   —   FRACTURE & SHARDS" : "02 / WATER   —   RIPPLE & SPLASH");
                 Vector3 center = targets[i].position;
-                Vector3 offset = new Vector3(i == 1 ? 1.4f : -1.3f, .55f, -4.4f);
+                Vector3 offset = new Vector3(i == 1 ? .65f : -.65f, .25f, -4.4f);
                 yield return MoveCamera(center + offset, center, 1.0f, false);
                 yield return new WaitForSeconds(.4f);
                 for (int n = 0; n < 5; n++)
                 {
                     Vector3 aim = center + new Vector3((n % 3 - 1) * .17f, ((n * 2) % 3 - 1) * .14f, -.15f);
                     FireAt(aim);
-                    yield return new WaitForSeconds(.95f);
+                    yield return new WaitForSeconds(1.35f);
                 }
                 yield return new WaitForSeconds(1.0f);
             }
-            SetLabel("MOTION LEAVES LIGHT. IMPACT LEAVES A MARK.");
+            SetLabel("GLASS KEEPS THE FRACTURE. WATER RETURNS TO STILLNESS.");
             yield return MoveCamera(zoneOrigin + new Vector3(0, 3.1f, -4.9f), zoneOrigin + new Vector3(0, 2, 6), 2.0f, false);
             yield return new WaitForSeconds(2);
             demoComplete = true;

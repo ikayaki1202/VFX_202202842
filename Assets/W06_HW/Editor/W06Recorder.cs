@@ -49,8 +49,8 @@ namespace W06Homework
             if (session.demoRunning)
                 throw new InvalidOperationException("[W06 Recorder] The showcase is already running. End it before recording from the beginning.");
             if (session.player == null || session.showcaseCamera == null || session.projectile == null || session.targets == null
-                || session.targets.Length != 3 || session.targets.Any(t => t == null))
-                throw new InvalidOperationException("[W06 Recorder] The lab requires its player, showcase camera, projectile, and three target references.");
+                || session.targets.Length == 0 || session.targets.Any(t => t == null))
+                throw new InvalidOperationException("[W06 Recorder] The lab requires its player, showcase camera, projectile, and target references.");
 
             var directory = Path.GetFullPath(Path.Combine(Application.dataPath, "..", "Deliverables"));
             Directory.CreateDirectory(directory);

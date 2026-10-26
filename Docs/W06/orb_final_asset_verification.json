@@ -1,0 +1,37 @@
+{
+  "shaders": [
+    {
+      "name": "W06/Glass Orb",
+      "messages": []
+    },
+    {
+      "name": "W06/Water Orb",
+      "messages": []
+    },
+    {
+      "name": "W06/CrackSurface",
+      "messages": []
+    },
+    {
+      "name": "W06/Impact Particle",
+      "messages": []
+    }
+  ],
+  "scene": "Assets/W06_HW/W06_HW.unity",
+  "sceneDirty": false,
+  "targetCount": 2,
+  "connections": [
+    {
+      "name": "Target_Glass_HW",
+      "tag": "Bullet",
+      "triggerListeners": 1,
+      "confirmedListeners": 3
+    },
+    {
+      "name": "Target_Water_HW",
+      "tag": "Bullet",
+      "triggerListeners": 1,
+      "confirmedListeners": 3
+    }
+  ]
+}

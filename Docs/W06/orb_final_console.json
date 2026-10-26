@@ -1,0 +1,41 @@
+{
+  "success": true,
+  "command": "command console get",
+  "data": {
+    "command": "console get",
+    "parameters": {
+      "tail": "6",
+      "level": "error"
+    },
+    "result": {
+      "entries": [],
+      "cursor": 972,
+      "session": "450298c2c06f483e81fe3746f22c26d4",
+      "returned": 0,
+      "dropped": false,
+      "reset": false,
+      "counts": {
+        "error": 0,
+        "warn": 0,
+        "log": 5
+      },
+      "groundTruth": {
+        "sampledUtc": "2026-10-26T14:29:29.5876572Z",
+        "ageMs": 204,
+        "compilationFailed": false,
+        "compiling": false,
+        "consoleErrors": 0,
+        "consoleWarnings": 0,
+        "consoleLogs": 5,
+        "seeded": true
+      }
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "C:\\Users\\게임-532-159\\Desktop\\codex_VFX_W06"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

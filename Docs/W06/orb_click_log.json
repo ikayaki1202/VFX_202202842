@@ -1,0 +1,257 @@
+{
+  "success": true,
+  "command": "command console get",
+  "data": {
+    "command": "console get",
+    "parameters": {
+      "tail": "100"
+    },
+    "result": {
+      "entries": [
+        {
+          "seq": 649,
+          "timestampUtc": "2026-10-26T14:10:45.4890951Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "<color=white>[Platform]</color> <b>Desktop 환경 활성화</b> (Override: Auto)",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nPlayer_Config:SetPlatform () (at Assets/00_Framework_DoNotOpen/Player/Player_Config.cs:64)\nPlayer_Config:Awake () (at Assets/00_Framework_DoNotOpen/Player/Player_Config.cs:37)\n",
+          "seeded": false
+        },
+        {
+          "seq": 650,
+          "timestampUtc": "2026-10-26T14:10:45.8551127Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "<color=yellow>[PlaterState]</color> <b>Fall</b>",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nPlayer_State:SetPlayerState (PlayerState) (at Assets/00_Framework_DoNotOpen/Player/Player_State.cs:23)\nPlayer_MoveBehavior:MoveGround () (at Assets/00_Framework_DoNotOpen/Player/Player_MoveBehavior.cs:128)\nPlayer_MoveBehavior:HandleMoveState (PlayerState) (at Assets/00_Framework_DoNotOpen/Player/Player_MoveBehavior.cs:74)\nPlayer_MoveBehavior:Update () (at Assets/00_Framework_DoNotOpen/Player/Player_MoveBehavior.cs:45)\n",
+          "seeded": false
+        },
+        {
+          "seq": 651,
+          "timestampUtc": "2026-10-26T14:10:47.1086937Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "<color=yellow>[PlaterState]</color> <b>Idle</b>",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nPlayer_State:SetPlayerState (PlayerState) (at Assets/00_Framework_DoNotOpen/Player/Player_State.cs:23)\nPlayer_MoveBehavior:MoveAir () (at Assets/00_Framework_DoNotOpen/Player/Player_MoveBehavior.cs:149)\nPlayer_MoveBehavior:HandleMoveState (PlayerState) (at Assets/00_Framework_DoNotOpen/Player/Player_MoveBehavior.cs:78)\nPlayer_MoveBehavior:Update () (at Assets/00_Framework_DoNotOpen/Player/Player_MoveBehavior.cs:45)\n",
+          "seeded": false
+        },
+        {
+          "seq": 652,
+          "timestampUtc": "2026-10-26T14:10:47.3018186Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "<color=yellow>[HandlingObject]</color> <b>Rifle_HW(Clone)</b>",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nPlayer_State:SetHandlingObject (UnityEngine.GameObject) (at Assets/00_Framework_DoNotOpen/Player/Player_State.cs:39)\nPlayer_GrabBehavior:Equip (SO_ItemData) (at Assets/00_Framework_DoNotOpen/Player/Player_GrabBehavior.Equip.cs:45)\nW06Homework.W06LabSession/<Start>d__11:MoveNext () (at Assets/W06_HW/Scripts/W06LabSession.cs:30)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 653,
+          "timestampUtc": "2026-10-26T14:10:47.3028199Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "<color=yellow>[InteractionState]</color> <b>Grabing</b>",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nPlayer_State:SetInteractionState (PlayerInteractionState) (at Assets/00_Framework_DoNotOpen/Player/Player_State.cs:31)\nPlayer_GrabBehavior:Equip (SO_ItemData) (at Assets/00_Framework_DoNotOpen/Player/Player_GrabBehavior.Equip.cs:46)\nW06Homework.W06LabSession/<Start>d__11:MoveNext () (at Assets/W06_HW/Scripts/W06LabSession.cs:30)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 654,
+          "timestampUtc": "2026-10-26T14:11:34.2507831Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "[Usable_Firearm] Rifle_HW(Clone) 발사! Mode=Single",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nUsable_Firearm:Fire (UnityEngine.GameObject) (at Assets/10_Reference_LookNoTouch/ItemScripts/Usable_Firearm.cs:75)\nUsable_Firearm:OnUsePressed (UnityEngine.GameObject) (at Assets/10_Reference_LookNoTouch/ItemScripts/Usable_Firearm.cs:53)\nGrabbable_Handheld:OnInteractionStart (UnityEngine.GameObject) (at Assets/10_Reference_LookNoTouch/ItemScripts/Grabable_Handheld.cs:52)\nPlayer_GrabBehavior:Update () (at Assets/00_Framework_DoNotOpen/Player/Player_GrabBehavior.cs:84)\n",
+          "seeded": false
+        },
+        {
+          "seq": 655,
+          "timestampUtc": "2026-10-26T14:11:34.3853179Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "[Usable_Firearm] Rifle_HW(Clone) 발사! Mode=Single",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nUsable_Firearm:Fire (UnityEngine.GameObject) (at Assets/10_Reference_LookNoTouch/ItemScripts/Usable_Firearm.cs:75)\nUsable_Firearm:OnUsePressed (UnityEngine.GameObject) (at Assets/10_Reference_LookNoTouch/ItemScripts/Usable_Firearm.cs:53)\nGrabbable_Handheld:OnInteractionStart (UnityEngine.GameObject) (at Assets/10_Reference_LookNoTouch/ItemScripts/Grabable_Handheld.cs:52)\nPlayer_GrabBehavior:Update () (at Assets/00_Framework_DoNotOpen/Player/Player_GrabBehavior.cs:84)\n",
+          "seeded": false
+        },
+        {
+          "seq": 656,
+          "timestampUtc": "2026-10-26T14:11:34.4264868Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "[W06_ORB] Glass hit=1 surface=(-77.300, 1.922, 314.734)",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nW06Homework.W06ReactiveOrb:ReceiveHit (UnityEngine.GameObject) (at Assets/W06_HW/Scripts/W06ReactiveOrb.cs:59)\nUnityEngine.Events.UnityEvent`1<UnityEngine.GameObject>:Invoke (UnityEngine.GameObject)\nW06Homework.W06OrbHitGate:TryHit (UnityEngine.GameObject) (at Assets/W06_HW/Scripts/W06OrbHitGate.cs:25)\nUnityEngine.Events.UnityEvent`1<UnityEngine.GameObject>:Invoke (UnityEngine.GameObject)\nTrigger_OnTriggerTag:OnTriggerEnter (UnityEngine.Collider) (at Assets/10_Reference_LookNoTouch/Interaction/Trigger_OnTriggerTag.cs:20)\n",
+          "seeded": false
+        },
+        {
+          "seq": 657,
+          "timestampUtc": "2026-10-26T14:11:34.4279904Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "[W06_HIT] Glass #1 projectile=Projectile_Bullet_HW(Clone)",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nW06Homework.W06TargetTelemetry:RegisterHit (UnityEngine.GameObject) (at Assets/W06_HW/Scripts/W06TargetTelemetry.cs:12)\nUnityEngine.Events.UnityEvent`1<UnityEngine.GameObject>:Invoke (UnityEngine.GameObject)\nW06Homework.W06OrbHitGate:TryHit (UnityEngine.GameObject) (at Assets/W06_HW/Scripts/W06OrbHitGate.cs:25)\nUnityEngine.Events.UnityEvent`1<UnityEngine.GameObject>:Invoke (UnityEngine.GameObject)\nTrigger_OnTriggerTag:OnTriggerEnter (UnityEngine.Collider) (at Assets/10_Reference_LookNoTouch/Interaction/Trigger_OnTriggerTag.cs:20)\n",
+          "seeded": false
+        },
+        {
+          "seq": 658,
+          "timestampUtc": "2026-10-26T14:11:34.4446701Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "[Projectile_Bullet_HW(Clone)] 명중: Target_Glass_HW",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nProjectile_Bullet:OnCollisionEnter (UnityEngine.Collision) (at Assets/10_Reference_LookNoTouch/ItemScripts/Projectile_Bullet.cs:58)\nUnityEngine.Physics:OnSceneContact (UnityEngine.PhysicsScene,intptr,int)\n",
+          "seeded": false
+        },
+        {
+          "seq": 659,
+          "timestampUtc": "2026-10-26T14:11:34.6253464Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "[W06_ORB] Glass hit=2 surface=(-77.300, 1.922, 314.734)",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nW06Homework.W06ReactiveOrb:ReceiveHit (UnityEngine.GameObject) (at Assets/W06_HW/Scripts/W06ReactiveOrb.cs:59)\nUnityEngine.Events.UnityEvent`1<UnityEngine.GameObject>:Invoke (UnityEngine.GameObject)\nW06Homework.W06OrbHitGate:TryHit (UnityEngine.GameObject) (at Assets/W06_HW/Scripts/W06OrbHitGate.cs:25)\nUnityEngine.Events.UnityEvent`1<UnityEngine.GameObject>:Invoke (UnityEngine.GameObject)\nTrigger_OnTriggerTag:OnTriggerEnter (UnityEngine.Collider) (at Assets/10_Reference_LookNoTouch/Interaction/Trigger_OnTriggerTag.cs:20)\n",
+          "seeded": false
+        },
+        {
+          "seq": 660,
+          "timestampUtc": "2026-10-26T14:11:34.6253464Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "[W06_HIT] Glass #2 projectile=Projectile_Bullet_HW(Clone)",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nW06Homework.W06TargetTelemetry:RegisterHit (UnityEngine.GameObject) (at Assets/W06_HW/Scripts/W06TargetTelemetry.cs:12)\nUnityEngine.Events.UnityEvent`1<UnityEngine.GameObject>:Invoke (UnityEngine.GameObject)\nW06Homework.W06OrbHitGate:TryHit (UnityEngine.GameObject) (at Assets/W06_HW/Scripts/W06OrbHitGate.cs:25)\nUnityEngine.Events.UnityEvent`1<UnityEngine.GameObject>:Invoke (UnityEngine.GameObject)\nTrigger_OnTriggerTag:OnTriggerEnter (UnityEngine.Collider) (at Assets/10_Reference_LookNoTouch/Interaction/Trigger_OnTriggerTag.cs:20)\n",
+          "seeded": false
+        },
+        {
+          "seq": 661,
+          "timestampUtc": "2026-10-26T14:11:34.6253464Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "[Projectile_Bullet_HW(Clone)] 명중: Target_Glass_HW",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nProjectile_Bullet:OnCollisionEnter (UnityEngine.Collision) (at Assets/10_Reference_LookNoTouch/ItemScripts/Projectile_Bullet.cs:58)\nUnityEngine.Physics:OnSceneContact (UnityEngine.PhysicsScene,intptr,int)\n",
+          "seeded": false
+        },
+        {
+          "seq": 662,
+          "timestampUtc": "2026-10-26T14:11:46.7005639Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "[Usable_Firearm] Rifle_HW(Clone) 발사! Mode=Single",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nUsable_Firearm:Fire (UnityEngine.GameObject) (at Assets/10_Reference_LookNoTouch/ItemScripts/Usable_Firearm.cs:75)\nUsable_Firearm:OnUsePressed (UnityEngine.GameObject) (at Assets/10_Reference_LookNoTouch/ItemScripts/Usable_Firearm.cs:53)\nGrabbable_Handheld:OnInteractionStart (UnityEngine.GameObject) (at Assets/10_Reference_LookNoTouch/ItemScripts/Grabable_Handheld.cs:52)\nPlayer_GrabBehavior:Update () (at Assets/00_Framework_DoNotOpen/Player/Player_GrabBehavior.cs:84)\n",
+          "seeded": false
+        },
+        {
+          "seq": 663,
+          "timestampUtc": "2026-10-26T14:11:46.8636722Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "[W06_ORB] Glass hit=3 surface=(-77.300, 1.922, 314.734)",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nW06Homework.W06ReactiveOrb:ReceiveHit (UnityEngine.GameObject) (at Assets/W06_HW/Scripts/W06ReactiveOrb.cs:59)\nUnityEngine.Events.UnityEvent`1<UnityEngine.GameObject>:Invoke (UnityEngine.GameObject)\nW06Homework.W06OrbHitGate:TryHit (UnityEngine.GameObject) (at Assets/W06_HW/Scripts/W06OrbHitGate.cs:25)\nUnityEngine.Events.UnityEvent`1<UnityEngine.GameObject>:Invoke (UnityEngine.GameObject)\nTrigger_OnTriggerTag:OnTriggerEnter (UnityEngine.Collider) (at Assets/10_Reference_LookNoTouch/Interaction/Trigger_OnTriggerTag.cs:20)\n",
+          "seeded": false
+        },
+        {
+          "seq": 664,
+          "timestampUtc": "2026-10-26T14:11:46.8636722Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "[W06_HIT] Glass #3 projectile=Projectile_Bullet_HW(Clone)",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nW06Homework.W06TargetTelemetry:RegisterHit (UnityEngine.GameObject) (at Assets/W06_HW/Scripts/W06TargetTelemetry.cs:12)\nUnityEngine.Events.UnityEvent`1<UnityEngine.GameObject>:Invoke (UnityEngine.GameObject)\nW06Homework.W06OrbHitGate:TryHit (UnityEngine.GameObject) (at Assets/W06_HW/Scripts/W06OrbHitGate.cs:25)\nUnityEngine.Events.UnityEvent`1<UnityEngine.GameObject>:Invoke (UnityEngine.GameObject)\nTrigger_OnTriggerTag:OnTriggerEnter (UnityEngine.Collider) (at Assets/10_Reference_LookNoTouch/Interaction/Trigger_OnTriggerTag.cs:20)\n",
+          "seeded": false
+        },
+        {
+          "seq": 665,
+          "timestampUtc": "2026-10-26T14:11:46.8841687Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "[Projectile_Bullet_HW(Clone)] 명중: Target_Glass_HW",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nProjectile_Bullet:OnCollisionEnter (UnityEngine.Collision) (at Assets/10_Reference_LookNoTouch/ItemScripts/Projectile_Bullet.cs:58)\nUnityEngine.Physics:OnSceneContact (UnityEngine.PhysicsScene,intptr,int)\n",
+          "seeded": false
+        },
+        {
+          "seq": 666,
+          "timestampUtc": "2026-10-26T14:12:19.7480511Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "[Usable_Firearm] Rifle_HW(Clone) 발사! Mode=Single",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nUsable_Firearm:Fire (UnityEngine.GameObject) (at Assets/10_Reference_LookNoTouch/ItemScripts/Usable_Firearm.cs:75)\nUsable_Firearm:OnUsePressed (UnityEngine.GameObject) (at Assets/10_Reference_LookNoTouch/ItemScripts/Usable_Firearm.cs:53)\nGrabbable_Handheld:OnInteractionStart (UnityEngine.GameObject) (at Assets/10_Reference_LookNoTouch/ItemScripts/Grabable_Handheld.cs:52)\nPlayer_GrabBehavior:Update () (at Assets/00_Framework_DoNotOpen/Player/Player_GrabBehavior.cs:84)\n",
+          "seeded": false
+        },
+        {
+          "seq": 667,
+          "timestampUtc": "2026-10-26T14:12:19.9629089Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "[W06_ORB] Water hit=1 surface=(-72.756, 1.936, 314.749)",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nW06Homework.W06ReactiveOrb:ReceiveHit (UnityEngine.GameObject) (at Assets/W06_HW/Scripts/W06ReactiveOrb.cs:59)\nUnityEngine.Events.UnityEvent`1<UnityEngine.GameObject>:Invoke (UnityEngine.GameObject)\nW06Homework.W06OrbHitGate:TryHit (UnityEngine.GameObject) (at Assets/W06_HW/Scripts/W06OrbHitGate.cs:25)\nUnityEngine.Events.UnityEvent`1<UnityEngine.GameObject>:Invoke (UnityEngine.GameObject)\nTrigger_OnTriggerTag:OnTriggerEnter (UnityEngine.Collider) (at Assets/10_Reference_LookNoTouch/Interaction/Trigger_OnTriggerTag.cs:20)\n",
+          "seeded": false
+        },
+        {
+          "seq": 668,
+          "timestampUtc": "2026-10-26T14:12:19.9644109Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "[W06_HIT] Water #1 projectile=Projectile_Bullet_HW(Clone)",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nW06Homework.W06TargetTelemetry:RegisterHit (UnityEngine.GameObject) (at Assets/W06_HW/Scripts/W06TargetTelemetry.cs:12)\nUnityEngine.Events.UnityEvent`1<UnityEngine.GameObject>:Invoke (UnityEngine.GameObject)\nW06Homework.W06OrbHitGate:TryHit (UnityEngine.GameObject) (at Assets/W06_HW/Scripts/W06OrbHitGate.cs:25)\nUnityEngine.Events.UnityEvent`1<UnityEngine.GameObject>:Invoke (UnityEngine.GameObject)\nTrigger_OnTriggerTag:OnTriggerEnter (UnityEngine.Collider) (at Assets/10_Reference_LookNoTouch/Interaction/Trigger_OnTriggerTag.cs:20)\n",
+          "seeded": false
+        },
+        {
+          "seq": 669,
+          "timestampUtc": "2026-10-26T14:12:19.9847082Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "[Projectile_Bullet_HW(Clone)] 명중: Target_Water_HW",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nProjectile_Bullet:OnCollisionEnter (UnityEngine.Collision) (at Assets/10_Reference_LookNoTouch/ItemScripts/Projectile_Bullet.cs:58)\nUnityEngine.Physics:OnSceneContact (UnityEngine.PhysicsScene,intptr,int)\n",
+          "seeded": false
+        },
+        {
+          "seq": 670,
+          "timestampUtc": "2026-10-26T14:13:08.2766392Z",
+          "level": "error",
+          "logType": "Exception",
+          "message": "ExecutionEngineException: String conversion error: Illegal byte sequence encounted in the input.",
+          "stackTrace": "System.Reflection.RuntimeAssembly.GetCodeBase (System.Reflection.Assembly a, System.Boolean escaped) (at <d49d4cb128564ee1b54a84338c98d353>:0)\nSystem.Reflection.RuntimeAssembly.get_CodeBase () (at <d49d4cb128564ee1b54a84338c98d353>:0)\nSystem.Reflection.AssemblyName.Create (System.Reflection.Assembly assembly, System.Boolean fillCodebase) (at <d49d4cb128564ee1b54a84338c98d353>:0)\nSystem.Reflection.RuntimeAssembly.GetName (System.Boolean copiedName) (at <d49d4cb128564ee1b54a84338c98d353>:0)\nSystem.Reflection.Assembly.GetName () (at <d49d4cb128564ee1b54a84338c98d353>:0)\nUnityEditor.QuickInstall.QuickInstaller.DetectPackagesFromLoadedAssemblies () (at <62d4a420a5974f5fa95e77f04b6cd98c>:0)\nUnityEditor.QuickInstall.QuickInstaller.PackageListHandler (UnityEditor.PackageManager.Requests.ListRequest request, UnityEditor.EditorApplication+CallbackFunction registeredCallback) (at <62d4a420a5974f5fa95e77f04b6cd98c>:0)\nUnityEditor.QuickInstall.QuickInstaller+<>c__DisplayClass21_0.<CreatePackageListHandler>b__0 () (at <62d4a420a5974f5fa95e77f04b6cd98c>:0)\nUnityEditor.EditorApplication.Internal_CallUpdateFunctions () (at <a1c4aa6b1d6f4d71b2e529a0fc32c2fd>:0)\n",
+          "seeded": false
+        },
+        {
+          "seq": 671,
+          "timestampUtc": "2026-10-26T14:14:31.1067522Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "[QA_NearMiss] 명중: Container_01_Green",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nProjectile_Bullet:OnCollisionEnter (UnityEngine.Collision) (at Assets/10_Reference_LookNoTouch/ItemScripts/Projectile_Bullet.cs:58)\nUnityEngine.Physics:OnSceneContact (UnityEngine.PhysicsScene,intptr,int)\n",
+          "seeded": false
+        },
+        {
+          "seq": 672,
+          "timestampUtc": "2026-10-26T14:14:31.1067522Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "[QA_NearMiss] 명중: Container_01_Blue_Yellow",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nProjectile_Bullet:OnCollisionEnter (UnityEngine.Collision) (at Assets/10_Reference_LookNoTouch/ItemScripts/Projectile_Bullet.cs:58)\nUnityEngine.Physics:OnSceneContact (UnityEngine.PhysicsScene,intptr,int)\n",
+          "seeded": false
+        }
+      ],
+      "cursor": 672,
+      "session": "450298c2c06f483e81fe3746f22c26d4",
+      "returned": 24,
+      "dropped": false,
+      "reset": false,
+      "counts": {
+        "error": 1,
+        "warn": 0,
+        "log": 23
+      },
+      "groundTruth": {
+        "sampledUtc": "2026-10-26T14:14:31.3899029Z",
+        "ageMs": 122,
+        "compilationFailed": false,
+        "compiling": false,
+        "consoleErrors": 1,
+        "consoleWarnings": 0,
+        "consoleLogs": 23,
+        "seeded": true
+      }
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "C:\\Users\\게임-532-159\\Desktop\\codex_VFX_W06"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

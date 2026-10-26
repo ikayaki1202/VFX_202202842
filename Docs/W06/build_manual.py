@@ -1,7 +1,7 @@
 """Build the editable Korean W06 manual and a five-page PDF.
 
 Update verification.json with actual Play evidence, then rerun this file.
-Only Docs/W06 is written. Game source is read solely to reflect concrete edge color.
+Only Docs/W06 is written. The active edition documents the glass and water orbs.
 """
 from pathlib import Path
 import json
@@ -9,7 +9,7 @@ import sys
 from html import escape
 from reportlab.pdfgen import canvas
 from reportlab.platypus import (
-    SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle, PageBreak, KeepTogether
+    SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle, PageBreak, KeepTogether, Image
 )
 from reportlab.lib import colors
 from reportlab.lib.styles import ParagraphStyle
@@ -25,10 +25,19 @@ HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[1]
 OUT = HERE / "W06_흔적_제작매뉴얼_황승경_202202842.pdf"
 MD = HERE / "W06_흔적_제작매뉴얼_황승경_202202842.md"
-STATE = json.loads((HERE / "verification.json").read_text(encoding="utf-8"))
-graph_code = (ROOT / "Assets/W06_HW/Editor/W06GraphTools.cs").read_text(encoding="utf-8")
-edge_is_black = "Color.black" in graph_code or "new Color(0f, 0f, 0f" in graph_code
-CONCRETE_EDGE = "검정 RGB (0, 0, 0)" if edge_is_black else "파편색과 동일한 일반 색상"
+STATE = json.loads((HERE / "verification.json").read_text(encoding="utf-8-sig"))
+if STATE.get("variant") != "glass_water":
+    STATE = {
+        "status_label": "유리·물 구슬 검증 대기",
+        "verification_date": "",
+        "checks": [["직접 클릭 사격", "대기", "새 구슬의 실제 Game 뷰 클릭 결과를 기록한다."],
+                   ["유리 균열·파편", "대기", "구면을 따르는 긴 균열과 파편을 확인한다."],
+                   ["물 파동·물방울", "대기", "평상시 변형과 피탄 후 감쇠를 구분해 확인한다."],
+                   ["새 자동 시연 영상", "대기", "두 구슬 버전의 녹화 결과를 기록한다."]],
+        "video_file": "새 구슬 버전 녹화 확인 전",
+        "submission_state": "새 구슬 버전 Push 확인 전",
+        "additional_observations": []
+    }
 
 FONT = Path("C:/Windows/Fonts")
 pdfmetrics.registerFont(TTFont("Malgun", str(FONT / "malgun.ttf")))
@@ -92,119 +101,110 @@ def callout(text):
 pages = [
 [
     ("kicker", "W06 / 3D 디지털 이펙트 / 2026.10.26"),
-    ("title", "흔적\nTRACE · IMPACT LAB"),
-    ("lead", "황승경_202202842\n움직임은 빛을, 충격은 표면의 자국을 남긴다."),
-    ("callout", "설정과 검증 결과는 실제 에디터 애셋·코드·녹화 파일을 기준으로 기록했다. 확인 범위와 제출 상태는 마지막 페이지에 표시한다."),
-    ("h", "제작 목표와 새 구역"),
-    ("body", "교수자의 W06 산업단지 배경을 그대로 사용한다. 지형·건물·소품·조명을 유지한 채 수업 위치 (-125, 0, 315)에서 동쪽 약 50 m 떨어진 컨테이너 앞마당 (-75, 0, 310)에 세 표적을 배치했다. 원본 배경 14개 루트, 3,113개 Transform의 위치·회전·크기를 보존했다."),
+    ("title", "흔적\nGLASS / WATER"),
+    ("lead", "황승경_202202842\n유리는 금이 남고, 물은 충격을 흘려보낸다."),
+    ("body", "선택한 두 구슬이 같은 총알에 서로 다르게 반응하도록 제작했다. 유리는 표면의 긴 균열과 각진 파편으로, 물은 계속 변하는 실루엣과 피탄 파동·물방울로 재질의 성질을 구분한다."),
     ("table", [
-        ["대상", "표현", "선택한 이유"],
-        ["금속", "스파크 + 작은 탄흔", "밝고 빠른 반응으로 단단한 표면을 구분한다."],
-        ["목재", "긴 나무 조각 + 불씨 디졸브 + 탄흔", "길쭉한 실루엣과 타는 가장자리로 목재의 결을 표현한다."],
-        ["콘크리트", "굵고 무거운 회색 파편 + 큰 탄흔", "목재와 다른 조각 SG·VFX 값을 사용해 무게감과 부스러짐을 구분한다."],
+        ["대상", "피탄 반응", "표현 의도"],
+        ["유리", "구면을 따라 뻗는 긴 금\n회전하며 튀는 유리 파편", "짧은 충격 뒤에도 흔적을 남기는 단단하고 깨지기 쉬운 재질."],
+        ["물", "평상시 잔잔한 흔들림\n피탄 파동과 물방울", "변형과 회복이 이어지는 액체의 부드러운 반응."],
     ]),
-    ("h", "열기와 조작"),
-    ("body", "Unity 6000.3.23f1에서 프로젝트를 열고, Project 창의 Assets > W06_HW > W06_HW 씬을 연다. Play를 시작하면 수업용 총이 자동 장착된다."),
-    ("table", [
-        ["입력", "기능", "사용 시점"],
-        ["WASD / 마우스", "이동 / 조준·클릭당 1발", "왼쪽 클릭으로 표적의 여러 지점을 쏜다."],
-        ["R / F6 / Esc", "탄흔 지우기 / 자동 시연 / 커서 해제", "비교 장면을 정리하거나 세 재질의 반응을 순서대로 본다."],
-    ]),
+    ("h", "교수자 맵 안의 새 작업 구역"),
+    ("body", "W06 산업단지 배경을 유지하고 컨테이너 앞마당 (-75, 0, 310)에 두 구슬을 배치했다. 수업 시연 위치 (-125, 0, 315)에서 동쪽으로 약 50 m 떨어져 있다. 원본 배경의 지형·건물·소품·조명은 그대로 사용하고 과제 표적만 교체했다."),
+    ("body", "구슬 지름은 2.25 m이고 두 중심은 5.2 m 떨어져 있다. 옅은 유리와 청색 물, 아래 받침대의 GLASS / WATER 표기로 대상을 구분한다."),
+    ("callout", "현재 구슬 표면은 URP HLSL 셰이더, 유리 균열은 구면 메시, 파편·물방울은 Particle System으로 구현했다. 기존 Shader Graph·VFX Graph 애셋과 새 구슬 구현을 구분해 기록한다."),
+    ("h", "프로젝트 열기"),
+    ("body", "Unity Hub에서 프로젝트 폴더를 추가하고 Unity 6000.3.23f1로 연다. Assets > W06_HW > W06_HW 씬에서 Play하면 소총이 자동 장착된다."),
 ],
 [
-    ("kicker", "01 / WOOD"),
-    ("title", "조각의 모양과 타는 시간"),
-    ("lead", "셰이더가 입자 하나의 윤곽을, VFX Graph가 개수·속도·수명을 결정한다."),
-    ("body", "SG_WoodChip_HW와 VFX_HitWood_HW를 과제 폴더에 복사해 독립적으로 조정했다. Simple Noise와 원형 마스크의 Multiply 결과를 Alpha에 사용하고, 입자 나이 비율을 Dissolve_Amount에 연결한다."),
-    ("table", [
-        ["항목", "설정값", "기대 효과"],
-        ["SG / Noise Scale", "4.2", "크게 뭉친 얼룩으로 목재 조각의 윤곽을 만든다."],
-        ["SG / Alpha Clip 시작", "0.16", "밝은 노이즈 조각만 남겨 둥근 외곽을 끊는다."],
-        ["디졸브 연결", "Age Over Lifetime -> Dissolve_Amount", "개별 입자의 수명에 따라 잘려 나가는 범위가 커진다."],
-        ["파편색 / 가장자리", "갈색 RGB (0.30, 0.105, 0.026)\n주황 HDR 2.4 / 폭 0.035", "갈색 중심과 좁은 불씨 띠를 구분한다."],
-        ["Spawn", "단발 Count 27\nLoop Duration 1 / Count 1", "짧은 충격 한 번에 여러 조각이 퍼진다."],
-        ["Capacity / Bounds", "96 / Manual, 크기 (7, 7, 7)", "여유 입자 수와 이동 영역을 확보한다."],
-        ["수명", "0.90-1.45초", "타들어 가는 변화를 볼 시간을 준다."],
-        ["Size / Scale", "0.065 / (0.55, 1.70, 1)", "잘려 나온 긴 나뭇조각이 보일 크기를 확보한다."],
-        ["Initialize / angleZ", "Uniform Random 0-360도", "파편마다 각도를 달리해 반복되는 모양을 줄인다."],
-        ["초기 방향 / 속도", "로컬 위쪽 / 2.8-5.8", "충돌 표면 바깥쪽으로 비교적 가볍게 튄다."],
-        ["중력 / Drag", "(0, -10.8, 0) / 0.65", "상승 뒤 낙하하는 곡선을 만든다."],
-        ["액터 생성 수명", "3초 / Align To Surface 켬", "그래프 수명보다 오래 프리팹을 유지하고 표면 방향에 맞춘다."],
-    ]),
-    ("h", "값을 고른 이유"),
-    ("body", "초기 시연에서 낮은 Clip 값이 매끈한 타원 외곽을 남겼다. 기준값을 0.16으로 올려 불규칙한 부분을 분리하고, 줄어든 윤곽이 보이도록 Size를 0.065로 키웠다. 무작위 각도와 긴 비율, 27개의 단발 입자로 목재의 가벼운 흩어짐을 설계했다."),
-],
-[
-    ("kicker", "02 / CONCRETE + METAL"),
-    ("title", "재질에 따라 다른 충격"),
-    ("lead", "콘크리트는 목재 SG와 VFX의 복사본을 각각 바꿨다. 색상만 바꾸는 방식으로 끝내지 않았다."),
+    ("kicker", "01 / GLASS"),
+    ("title", "표면을 타고 뻗는 금"),
+    ("lead", "맞은 곳에서 긴 균열이 갈라지고, 얇고 각진 조각이 바깥쪽으로 튄다."),
+    ("body", "총알이 처음 들어온 표면을 역방향 레이로 찾는다. 그 점에서 구면을 따라 경로를 만들고 작은 방향 변화를 더해 꺾인 금을 구성한다. 어두운 중심과 밝은 가장자리를 가진 가는 메시를 구 표면 바로 위에 붙인다."),
     ("compacttable", [
-        ["항목", "콘크리트 설정값", "목재와 다른 기대 효과"],
-        ["SG / Noise Scale", "9", "더 잘게 끊어진 불규칙한 돌 윤곽."],
-        ["SG / Alpha Clip 시작", "0.26", "원형 외곽 대신 분리된 돌 부스러기 윤곽."],
-        ["디졸브", "나이 연결 해제 / Amount 0", "시간에 따라 타는 표현을 사용하지 않는다."],
-        ["파편색 / 가장자리", "RGB (0.36, 0.39, 0.41)\n" + CONCRETE_EDGE, "회색 파편에 목재의 주황 발광이 섞이지 않는다."],
-        ["Spawn / Capacity", "단발 Count 16 / 64\nLoop Duration 1 / Count 1", "큰 조각이 적게 튀는 반응."],
-        ["Bounds", "Manual / 크기 (7, 7, 7)", "설정한 이동 범위를 포함한다."],
-        ["수명", "0.55-0.85초", "목재보다 짧고 빠르게 정리되는 충격."],
-        ["Size / Scale", "0.105 / (1, 0.80, 1)", "목재보다 굵고 덩어리진 조각."],
-        ["Initialize / angleZ", "Uniform Random 0-360도", "고정 방향의 점 모양 반복을 줄인다."],
-        ["초기 속도", "1.5-3.8", "더 좁고 둔하게 퍼지는 파편."],
-        ["중력 / Drag", "(0, -13, 0) / 1.15", "더 무겁게 가라앉는 움직임."],
+        ["항목", "설정값", "선택한 이유·효과"],
+        ["유리 표면색", "RGB (0.64, 0.88, 0.96)\nTint opacity 0.23", "배경을 비추면서 옅은 청색 두께감을 유지한다."],
+        ["매끄러움 / 굴절", "Smoothness 0.96\nRefraction 0.025", "매끈한 반사와 배경 굴절로 유리를 구분한다."],
+        ["주 균열", "6개 방향 / 경로당 22구간\n긴 3개 + 짧은 3개", "한 점에서 길이가 서로 다른 금이 뻗는다."],
+        ["긴 균열의 각도", "1.55-1.93 rad\n약 89-111도", "구슬의 정면을 넘어 곡면을 타는 긴 금을 만든다."],
+        ["가지 균열", "주 균열마다 2개\n길이 0.25-0.63 rad", "규칙적인 방사형 모양을 깨고 파손의 세부를 더한다."],
+        ["균열 폭 / 부착 반경", "기준 폭 0.0048\n로컬 반경 0.5035", "반경 0.5인 구 바로 위에 붙여 겹침을 피하고 끝은 가늘게 한다."],
+        ["흔적 보관", "최대 5회 피탄 흔적\nR로 초기화", "여러 번 쏜 결과를 남기면서 메시 수의 증가를 제한한다."],
+        ["파편 개수 / 형상", "36개\n얇은 삼각기둥 메시", "둥근 점 대신 각진 유리 조각의 실루엣을 만든다."],
+        ["파편 굴절 재질", "Opacity 0.48\nRefraction 0.003", "파편이 배경을 비추면서도 실루엣은 읽히도록 조정했다."],
+        ["파편 크기 / 속도", "기준 크기 0.055-0.23\n초기 속도 2.3-5.4", "크고 작은 파편이 빠르게 퍼지도록 한다."],
+        ["파편 수명 / 중력", "0.75-1.50초\nGravity Modifier 0.85", "표면 바깥쪽으로 튄 뒤 낙하하며 정리된다."],
     ]),
-    ("h", "금속 표적"),
-    ("body", "금속 피탄은 W05의 VFX_HitMetal_Spark를 FX_HW_Metal로 복사해 그래프 내부 수치를 유지했다. 세 표적 표면은 모두 URP Lit으로 구성했다."),
-    ("compacttable", [
-        ["항목", "설정값", "기대 효과"],
-        ["금속 표면", "RGB (0.23, 0.31, 0.36)\nMetallic 0.92 / Smoothness 0.67", "차가운 강철색과 매끈한 반사."],
-        ["목재 표면", "제공 목재 텍스처 x RGB (0.52, 0.30, 0.13)\nMetallic 0 / Smoothness 0.16", "목재의 결을 보존하고 반짝임을 낮춤."],
-        ["콘크리트 표면", "제공 Rough + Normal\nRGB (0.70, 0.72, 0.74)\nTiling (2,1) / Normal 0.38", "Wall_Concrete_Rough 텍스처와 노멀로 돌의 거친 표면 표현.\nMetallic 0.03 / Smoothness 0.18."],
-        ["피탄 프리팹 유지", "세 재질 모두 3초", "짧은 파편·스파크가 끝난 뒤 생성물을 정리."],
-    ]),
-    ("body", "값을 고른 이유: 초기의 점처럼 보이는 외곽을 줄이려고 Clip을 0.26, Size를 0.105로 높였다. 큰 조각, 느린 속도, 짧은 수명, 강한 중력·저항으로 목재와 실루엣·리듬을 구분했다."),
+    ("h", "지속되는 흔적과 짧은 움직임"),
+    ("body", "균열은 사라지지 않는 표면 반응이고 파편은 짧은 입자 반응이다. 파편에도 배경을 읽는 굴절 재질과 무작위 크기·회전, 수명 후반의 투명도 감소를 적용했다. 구슬 전체를 부수는 대신 구의 형태를 유지해 누적되는 금을 비교할 수 있게 했다."),
 ],
 [
-    ("kicker", "03 / TRAIL + DECAL"),
-    ("title", "지나간 자리와 맞은 자리"),
-    ("lead", "총알의 이동은 가는 빛으로, 표면의 충격은 재질별 크기가 다른 탄흔으로 남긴다."),
+    ("kicker", "02 / WATER"),
+    ("title", "흔들린 뒤 다시 잔잔하게"),
+    ("lead", "평소에는 천천히 울렁이고, 맞은 순간 큰 파동과 물방울이 함께 생긴다."),
+    ("body", "서로 다른 방향·속도의 파형을 합쳐 기본 표면을 움직인다. 피탄 이벤트는 셰이더에 시간과 충돌 방향을 전달한다. 맞은 곳에서 각거리로 퍼지는 파동에 전체 흔들림을 더하고, 시간이 지날수록 강도를 줄인다."),
+    ("compacttable", [
+        ["항목", "설정값", "선택한 이유·효과"],
+        ["물 표면색", "RGB (0.035, 0.48, 0.73)\nTint opacity 0.46", "유리보다 짙은 청색으로 액체의 부피를 구분한다."],
+        ["매끄러움 / 굴절", "Smoothness 0.96\nRefraction 0.035", "변하는 표면의 반사와 굴절을 드러낸다."],
+        ["Idle Wobble", "0.035", "피탄 전에도 물 구슬의 실루엣이 작게 움직인다."],
+        ["평상시 파형", "시간 계수 1.85 / -1.45\n혼합 비중 0.56 / 0.44", "한 방향으로만 진동하지 않도록 두 파형을 합친다."],
+        ["충격 전달", "ImpactTime / ImpactPoint\nImpactStrength 1", "마지막 피탄 시간과 로컬 충돌 방향을 표면 반응에 사용한다."],
+        ["충격 파동", "각거리 계수 12\n시간 계수 13.5", "맞은 곳에서 곡면을 따라 밝은 파동과 변형이 퍼진다."],
+        ["변형 배율 / 감쇠", "0.105\nexp(-경과시간 x 1.16)", "큰 출렁임 뒤 2초에는 강도 약 10%로 감소한다."],
+        ["구 표면 메시", "경도 96 x 위도 64", "정점 변형으로 변하는 윤곽을 부드럽게 표현한다."],
+        ["물방울 개수 / 형상", "44개\n둥근 방울 메시", "유리 파편과 다른 매끈한 실루엣을 만든다."],
+        ["물방울 굴절 재질", "Opacity 0.72\nRefraction 0.004", "물방울의 둥근 윤곽과 배경 굴절이 함께 보이게 한다."],
+        ["물방울 크기 / 속도", "기준 크기 0.07-0.20\n초기 속도 2.3-4.7", "일부 큰 방울을 섞어 물이 흩어지는 양감을 준다."],
+        ["수명 / 중력", "0.75-1.50초\nGravity Modifier 0.70", "유리보다 가볍게 흩어진 뒤 낙하한다."],
+    ]),
+    ("h", "반응의 범위"),
+    ("body", "물의 움직임은 실시간 유체 시뮬레이션이 아닌 셰이더 정점 변형이다. 충돌 판정은 안정적인 SphereCollider로 유지한다. 연속 피탄은 마지막 충격 시점과 방향으로 파동을 다시 시작하고, R은 피탄 흔들림을 지우되 평상시 움직임은 유지한다."),
+],
+[
+    ("kicker", "03 / CONNECTION + INPUT"),
+    ("title", "총알에서 표면 반응까지"),
+    ("lead", "수업의 Trigger와 Actor를 유지하고 Inspector 이벤트로 새 효과를 연결했다."),
     ("table", [
-        ["항목", "설정값", "기대 효과"],
-        ["총알 속도 / 발사 방식", "32 / Single, 클릭당 1발\n모드 전환 끔", "입력 한 번에 겹치는 총알이 생기는 것을 막는다."],
-        ["Trail Time / Width", "0.22초 / 0.035", "표적을 가리지 않는 짧고 가는 궤적."],
-        ["Trail 폭 커브", "시작 1 -> 끝 0", "꼬리 끝이 가늘어짐."],
-        ["Trail 색·Alpha", "밝은 노랑 -> 주황\nAlpha 1 -> 0", "이동 뒤쪽으로 자연스럽게 사라짐."],
-        ["Min Vertex Distance", "0.05", "리본 궤적을 촘촘하게 연결."],
-        ["Trail 머티리얼", "제공 Mat_Trail 복사\nBase Color (3.2, 2.45, 0.8)", "따뜻한 발광색과 Bloom의 번짐."],
-        ["금속 탄흔 W x H", "0.13 x 0.13", "작고 집중된 자국."],
-        ["목재 탄흔 W x H", "0.17 x 0.22", "세로로 약간 긴 목재 자국."],
-        ["콘크리트 탄흔 W x H", "0.28 x 0.28", "더 넓게 부스러진 표면 자국."],
-        ["디컬 투영", "Depth 0.32 / Pivot (0,0,0)\nDraw Distance 50", "곡면 충돌 지점에서 투영 범위를 확보."],
-        ["탄흔 수명·방향", "18초 / Align To Surface 켬", "여러 발의 자국이 잠시 남고 표면 안쪽으로 투영."],
-        ["렌더링", "URP Decal Feature / HDR 켬\n원본 Global Volume 유지", "교수자 배경의 조명과 후처리를 유지하면서 디컬 표시 지원."],
+        ["단계", "연결", "역할"],
+        ["1. 사격", "Single 모드\nBullet 태그 총알", "왼쪽 클릭 한 번에 총알 한 발이 이동한다."],
+        ["2. 감지·표면 확인", "Trigger_OnTriggerTag\nW06OrbHitGate.TryHit", "총알 태그와 본체 표면을 지나는 경로를 확인한 뒤 OnConfirmedHit 이벤트를 실행한다."],
+        ["3. 표면 반응", "W06ReactiveOrb\nReceiveHit", "유리는 균열 메시를 추가하고 물은 충격 시간·방향을 셰이더에 전달한다."],
+        ["4. 입자 반응", "Actor_Instantiate\nInstantiateAtObject", "표면의 법선에 맞춰 Glass 또는 Water 피탄 프리팹을 생성한다."],
+        ["5. 정리", "입자 수명 + 액터 수명", "입자는 점차 사라지고 피탄 프리팹은 3초 뒤 정리된다."],
     ]),
-    ("h", "연결과 선택 이유"),
-    ("body", "Bullet 태그의 총알 -> 감지 Trigger -> Actor_Instantiate 목록 -> 피탄 프리팹과 디컬 프리팹을 함께 생성한다. 본체 SphereCollider와 로컬 반경 0.85의 Trigger를 분리했다. 물리 간격 0.01초를 프로젝트에 저장하고, 총 Hold Offset을 (0, 0.4, 0.15)로 조정했다. 표면 정렬에는 수업 액터를 사용한다."),
-    ("body", "속도 32에서 0.22초 동안 이동하는 거리는 약 7.04 m다. 실제 보이는 길이는 충돌·소멸과 시점에 따라 줄어든다. 탄흔은 같은 텍스처를 사용하되 크기를 달리해 선택 도전의 재질별 자국 차이를 시도했다."),
+    ("h", "안정적인 사격과 표시"),
+    ("compacttable", [
+        ["항목", "설정값", "역할"],
+        ["총 / 총알", "Single / 속도 32\n모드 전환 끔", "제공 Auto의 누름·Update 중복 발사를 피한다."],
+        ["물리 간격", "0.01초", "빠른 총알의 감지 간격을 줄이며 프로젝트에 영구 저장한다."],
+        ["본체 / 감지 반경", "로컬 0.5 / 0.67", "감지 영역만 스치는 빗맞음은 본체 레이 검사에서 제외한다."],
+        ["Trail", "0.22초 / 폭 0.035", "총알이 움직인 자리를 짧고 가는 빛으로 표시한다."],
+        ["카메라", "Opaque Texture 켬\nDepth Texture 켬", "불투명 배경을 읽어 구슬의 굴절에 사용한다."],
+    ]),
+    ("h", "조작"),
+    ("body", "WASD 이동 / 마우스 조준 / 왼쪽 클릭 사격. R로 구슬의 흔적과 충격 반응을 초기화한다. F6으로 두 구슬의 자동 시연을 시작하거나 끝내고, Esc로 커서를 해제하거나 직접 조작으로 돌아온다."),
+    ("h", "편집할 위치"),
+    ("small", "Assets/W06_HW의 Shaders에서 표면, Scripts에서 명중·균열·입자 반응을 편집한다.\nEditor/W06OrbSceneBuilder.cs는 Materials·Prefabs·Meshes와 씬 구성을 저장한다."),
 ],
 [
-    ("kicker", "04 / EXPERIMENT + DELIVERY"),
-    ("title", "시도한 것과 확인할 것"),
-    ("h", "설정 확인과 수정 기록"),
+    ("kicker", "04 / VERIFICATION + DELIVERY"),
+    ("title", "확인한 결과와 제출 자료"),
+    ("h", "제작에서 선택한 방법"),
     ("compacttable", [
-        ["시도·발견", "변경·대안", "이유"],
-        ["제공 Trail Time 5초", "과제 복사본 0.22초", "긴 궤적을 줄여 피탄 반응에 시선을 모음."],
-        ["둥근 목재·점 모양 돌 외곽", "Clip 0.16 / 0.26\nSize 0.065 / 0.105\nangleZ 0-360도", "불규칙한 조각과 크기·방향 변화를 확보."],
-        ["목재 그래프를 돌용으로 복사", "돌: 나이 연결 해제, Amount 0\n외곽은 파편색과 동일", "돌이 타는 표현을 제거."],
-        ["Auto 중복 발사로 총알끼리 충돌·소멸", "Single / 모드 전환 끔\n물리 간격 0.01초 저장", "클릭당 1발. 실제 Game 뷰 클릭 3회로 재확인."],
+        ["문제·의도", "선택한 방법", "이유"],
+        ["입자가 하얀 덩어리처럼 보임", "굴절 입자 전용 셰이더", "배경을 비추는 투명한 조각·방울로 재질감을 조정했다."],
+        ["잔잔함과 피탄을 구분", "기본 파형 + 감쇠하는 충격 파형", "평소의 울렁임보다 피탄 순간의 반응을 크게 만든다."],
+        ["넓은 감지 영역의 빗맞음", "본체 콜라이더 레이 검사", "총알의 경로가 실제 구에 닿을 때만 피탄 이벤트를 보낸다."],
     ]),
     ("h", "검증 상태: " + STATE["status_label"]),
-    ("small", "이전 호출 기반 검증은 마우스 입력을 거치지 않아 중복 발사를 놓쳤다. 아래는 실제 Game 뷰 클릭과 자동 시연의 증거를 구분한 결과다."
+    ("small", "자동 시연과 실제 마우스 클릭은 서로 다른 경로다. 아래 결과는 두 구슬 버전에 대해 확인한 범위만 기록한다."
      + ((" 확인일: " + STATE["verification_date"]) if STATE["verification_date"] else "")),
     ("checktable", [["확인 항목", "상태", "증거·후속 확인"]] + STATE["checks"]),
     ("small", "영상: " + STATE["video_file"] + "\nGit 제출: " + STATE["submission_state"]),
-    ("h", "제출 파일과 출처"),
-    ("body", "W06_HW 씬·애셋의 구현 커밋을 VFX_202202842 저장소의 W06 브랜치로 Push했다. Unity Recorder 영상과 이 매뉴얼의 LMS 업로드는 사용자가 별도로 진행한다. 제출기한은 2026년 10월 31일(토)이다."),
-    ("small", "제작 기반: 황주선 교수자의 KNU_VFX_2026Q3 수업 저장소. 제공 애셋의 권리는 각 원저작자에게 있다. W06_TraceAndMark_Demo의 배경을 W06_HW에 복사했으며 원본 씬 파일은 변경하지 않았다."),
+    ("h", "제출 경로와 출처"),
+    ("body", "프로젝트는 VFX_202202842 저장소의 W06 브랜치에 제출한다. 영상과 이 매뉴얼은 LMS에 별도로 업로드한다. 제출기한은 2026년 10월 31일(토)이다. 기존 direct_fire 폴더의 금속·목재·콘크리트 화면은 이전 버전의 기록이다."),
+    ("small", "제작 기반: 교수자의 KNU_VFX_2026Q3 수업 저장소. 제공 모델·텍스처·프레임워크의 권리는 원저작자에게 있다. 원본 산업단지 씬 파일과 맵 애셋은 변경하지 않았다."),
     ("sources", [
         ("6주차 수업자료", "https://docs.google.com/presentation/d/1MXeQCkpXs_B87I_nM_-FYUNbqKFaTL3E2YQaEtwUuCs"),
         ("5주차 참고자료", "https://docs.google.com/presentation/d/1y9TF_Vt_eOuZOgNpOAbq7n4n-BkedC4VmFDR3bX-71k"),
@@ -212,8 +212,11 @@ pages = [
     ]),
 ]
 ]
-if STATE["additional_observations"]:
-    pages[4].insert(-3, ("small", "실행 관찰: " + " / ".join(STATE["additional_observations"])))
+proof_images = [HERE / "orbs" / "video_glass_shards.png", HERE / "orbs" / "video_water_droplets.png"]
+if all(path.exists() for path in proof_images):
+    pages[0].append(("imagepair", proof_images))
+if STATE.get("variant") == "glass_water" and STATE.get("additional_observations"):
+    pages[4].insert(-3, ("small", "검증 범위: 클릭 검증의 조준은 잠시 고정했고 R은 Input System 큐 이벤트로 확인했다. 에디터 도구 QuickInstall 문자열 예외 1건은 게임 피탄 예외와 구분했다. 첫 클릭 화면의 입자는 중간 재질이며 최종 외형은 이 매뉴얼의 시연 캡처와 새 MP4가 기준이다. 자세한 기록은 verification.json에 남겼다."))
 
 class NumberedCanvas(canvas.Canvas):
     def __init__(self, *args, **kwargs):
@@ -239,7 +242,7 @@ def footer(c, doc):
     c.rect(0, height-12, width, 12, fill=1, stroke=0)
     c.setFont("MalgunBold", 8)
     c.setFillColor(MUTED)
-    c.drawString(42, height-42, "TRACE / IMPACT LAB")
+    c.drawString(42, height-42, "TRACE / GLASS & WATER")
     c.setFont("Malgun", 8)
     c.drawRightString(width-42, height-42, "황승경_202202842  |  W06 흔적")
     c.setStrokeColor(LINE)
@@ -248,7 +251,7 @@ def footer(c, doc):
     c.drawString(42, 25, "3D 디지털 이펙트  /  제작 설정과 선택 이유")
     c.restoreState()
 
-story, md_lines = [], ["# W06 흔적 - TRACE · IMPACT LAB", "", "**황승경_202202842**", ""]
+story, md_lines = [], ["# W06 흔적 - GLASS / WATER", "", "**황승경_202202842**", ""]
 for n, blocks in enumerate(pages):
     if n:
         story.append(PageBreak())
@@ -260,6 +263,16 @@ for n, blocks in enumerate(pages):
             story += [table(value, widths, compact=kind in ("compacttable","checktable")), Spacer(1, 6)]
             md_lines += ["| " + " | ".join(value[0]) + " |", "| " + " | ".join("---" for _ in value[0]) + " |"]
             md_lines += ["| " + " | ".join(str(x).replace("\n", "<br>") for x in row) + " |" for row in value[1:]]
+            md_lines.append("")
+        elif kind == "imagepair":
+            width = 220
+            pictures = [Image(str(path), width=width, height=width*9/16) for path in value]
+            visual = Table([pictures], colWidths=[(A4[0]-84)/2]*2)
+            visual.setStyle(TableStyle([("LEFTPADDING", (0,0), (-1,-1), 0),
+                ("RIGHTPADDING", (0,0), (-1,-1), 0), ("TOPPADDING", (0,0), (-1,-1), 6),
+                ("BOTTOMPADDING", (0,0), (-1,-1), 0)]))
+            story.append(visual)
+            md_lines += [f"![{path.stem}](orbs/{path.name})" for path in value]
             md_lines.append("")
         elif kind == "sources":
             links = []
@@ -274,11 +287,11 @@ for n, blocks in enumerate(pages):
         else:
             story.append(P(value, kind))
             prefix = "## " if kind == "title" else "### " if kind == "h" else ""
-            md_lines += [prefix + value.replace("\n", "  \n"), ""]
+            md_lines += [prefix + value.replace("\n", "<br>\n"), ""]
 
 MD.write_text("\n".join(md_lines), encoding="utf-8")
 doc = SimpleDocTemplate(str(OUT), pagesize=A4, rightMargin=42, leftMargin=42,
     topMargin=66, bottomMargin=54, title="W06 흔적 제작 매뉴얼 - 황승경_202202842",
-    author="황승경_202202842", subject="TRACE · IMPACT LAB 설정값과 제작 이유")
+    author="황승경_202202842", subject="GLASS / WATER 구슬 설정값과 제작 이유")
 doc.build(story, onFirstPage=footer, onLaterPages=footer, canvasmaker=NumberedCanvas)
-print(json.dumps({"pdf":str(OUT), "markdown":str(MD), "concrete_edge":CONCRETE_EDGE}, ensure_ascii=False))
+print(json.dumps({"pdf":str(OUT), "markdown":str(MD)}, ensure_ascii=False))

@@ -159,7 +159,7 @@ namespace W06Homework
             EditorSceneManager.SaveScene(scene,Root+"W06_HW.unity"); EditorBuildSettings.scenes=new[]{new EditorBuildSettingsScene(Root+"W06_HW.unity",true)};
             AssetDatabase.SaveAssets();
             if(SceneView.lastActiveSceneView) SceneView.lastActiveSceneView.LookAt(Origin+new Vector3(0,2,4),Quaternion.Euler(12,0,0),14);
-            return W06OriginalMapAdapter.Apply();
+            return W06OriginalMapAdapter.Apply() + " " + W06OrbSceneBuilder.Apply();
         }
 
         public static string Polish()
