@@ -341,7 +341,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 254b9be8e5121fb4f94639b1f588b68f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Grabbable_Handheld
-  holdOffset: {x: 0, y: 0, z: 1}
+  holdOffset: {x: 0, y: 0.4, z: 0.15}
   throwForceMultiplier: 1
   muzzlePoint: {fileID: 8571757529617053480}
 --- !u!114 &108216994546294435
@@ -356,8 +356,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3988bbfbc23c1374d9226065d76273b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Usable_Firearm
-  Mode: 1
-  AllowModeSwitch: 1
+  Mode: 0
+  AllowModeSwitch: 0
   FireRate: 0.19
   BulletPrefab: {fileID: 3296421154524072405, guid: 6afb4e91d46c2d24895344f169d47cd6, type: 3}
   BulletSpeed: 32

@@ -85,6 +85,7 @@ namespace W06Homework
         public static string FinishPresentation()
         {
             if (EditorApplication.isPlaying) throw new InvalidOperationException("Stop Play mode first.");
+            FixDirectFire();
             var session = UnityEngine.Object.FindFirstObjectByType<W06LabSession>();
             foreach (var target in session.targets)
                 target.GetComponentsInChildren<SphereCollider>().First(c => c.isTrigger).radius = .85f;
@@ -104,6 +105,38 @@ namespace W06Homework
             EditorSceneManager.MarkSceneDirty(session.gameObject.scene);
             EditorSceneManager.SaveScene(session.gameObject.scene);
             return "Controls readable on the courtyard ground; trigger shell widened for fast bullets.";
+        }
+
+        public static string FixDirectFire()
+        {
+            if (EditorApplication.isPlaying) throw new InvalidOperationException("Stop Play mode first.");
+            const string riflePath = "Assets/W06_HW/Prefabs/Rifle_HW.prefab";
+            var prefab = PrefabUtility.LoadPrefabContents(riflePath);
+            try
+            {
+                // The provided Auto handler fires on press and immediately again in Update.
+                // Use its supported Single mode so a click cannot create overlapping bullets.
+                var gun = prefab.GetComponent<Usable_Firearm>();
+                gun.Mode = FireMode.Single;
+                gun.AllowModeSwitch = false;
+                var grip = new SerializedObject(prefab.GetComponent<Grabbable_Handheld>());
+                grip.FindProperty("holdOffset").vector3Value = new Vector3(0, .4f, .15f);
+                grip.ApplyModifiedPropertiesWithoutUndo();
+                PrefabUtility.SaveAsPrefabAsset(prefab, riflePath);
+            }
+            finally { PrefabUtility.UnloadPrefabContents(prefab); }
+
+            // Persist the physics step. Setting Time.fixedDeltaTime alone only changed this session.
+            var timeAsset = AssetDatabase.LoadAllAssetsAtPath("ProjectSettings/TimeManager.asset")[0];
+            var settings = new SerializedObject(timeAsset);
+            var count = settings.FindProperty("Fixed Timestep.m_Count");
+            var numerator = settings.FindProperty("Fixed Timestep.m_Rate.m_Numerator").longValue;
+            var denominator = settings.FindProperty("Fixed Timestep.m_Rate.m_Denominator").longValue;
+            count.longValue = (long)Math.Round(.01 * numerator / denominator);
+            settings.ApplyModifiedPropertiesWithoutUndo();
+            EditorUtility.SetDirty(timeAsset);
+            AssetDatabase.SaveAssets();
+            return "Rifle: Single, mode switching disabled. Saved physics step: 0.01 seconds.";
         }
     }
 }

@@ -67,7 +67,7 @@ namespace W06Homework
             var rb=bullet.GetComponent<Rigidbody>(); rb.useGravity=false; rb.collisionDetectionMode=CollisionDetectionMode.ContinuousDynamic;
             PrefabUtility.SaveAsPrefabAsset(bullet,Root+"Prefabs/Projectile_Bullet_HW.prefab"); PrefabUtility.UnloadPrefabContents(bullet);
             var rifle=PrefabUtility.LoadPrefabContents("Assets/20_TuneOnly/Items/Prefabs/Usable_Rifle.prefab");
-            rifle.name="Rifle_HW"; var firearm=rifle.GetComponent<Usable_Firearm>(); firearm.BulletPrefab=Load<GameObject>(Root+"Prefabs/Projectile_Bullet_HW.prefab").GetComponent<Projectile_Bullet>(); firearm.BulletSpeed=32; firearm.Mode=FireMode.Auto; firearm.FireRate=.19f;
+            rifle.name="Rifle_HW"; var firearm=rifle.GetComponent<Usable_Firearm>(); firearm.BulletPrefab=Load<GameObject>(Root+"Prefabs/Projectile_Bullet_HW.prefab").GetComponent<Projectile_Bullet>(); firearm.BulletSpeed=32; firearm.Mode=FireMode.Single; firearm.AllowModeSwitch=false; firearm.FireRate=.19f;
             PrefabUtility.SaveAsPrefabAsset(rifle,Root+"Prefabs/Rifle_HW.prefab"); PrefabUtility.UnloadPrefabContents(rifle);
             Copy("Assets/20_TuneOnly/Items/ScriptableObjects/SO_ItemData_Rifle.asset",Root+"Prefabs/SO_Rifle_HW.asset");
             var item=Load<SO_ItemData>(Root+"Prefabs/SO_Rifle_HW.asset"); item.WorldPrefab=Load<GameObject>(Root+"Prefabs/Rifle_HW.prefab"); item.ItemName="Range rifle"; EditorUtility.SetDirty(item);

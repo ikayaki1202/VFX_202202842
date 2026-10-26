@@ -1,0 +1,52 @@
+[
+  {
+    "timestampUtc": "2026-10-26T13:50:36.1551094Z",
+    "level": "log",
+    "message": "[Usable_Firearm] Rifle_HW(Clone) 발사! Mode=Single"
+  },
+  {
+    "timestampUtc": "2026-10-26T13:50:36.4721357Z",
+    "level": "log",
+    "message": "[W06_HIT] Metal #1 projectile=Projectile_Bullet_HW(Clone)"
+  },
+  {
+    "timestampUtc": "2026-10-26T13:50:36.4884811Z",
+    "level": "log",
+    "message": "[Projectile_Bullet_HW(Clone)] 명중: Target_Metal_HW"
+  },
+  {
+    "timestampUtc": "2026-10-26T13:50:37.7025729Z",
+    "level": "error",
+    "message": "ExecutionEngineException: String conversion error: Illegal byte sequence encounted in the input."
+  },
+  {
+    "timestampUtc": "2026-10-26T13:51:03.8341157Z",
+    "level": "log",
+    "message": "[Usable_Firearm] Rifle_HW(Clone) 발사! Mode=Single"
+  },
+  {
+    "timestampUtc": "2026-10-26T13:51:04.1124491Z",
+    "level": "log",
+    "message": "[W06_HIT] Wood #1 projectile=Projectile_Bullet_HW(Clone)"
+  },
+  {
+    "timestampUtc": "2026-10-26T13:51:04.128981Z",
+    "level": "log",
+    "message": "[Projectile_Bullet_HW(Clone)] 명중: Target_Wood_HW"
+  },
+  {
+    "timestampUtc": "2026-10-26T13:51:48.0993621Z",
+    "level": "log",
+    "message": "[Usable_Firearm] Rifle_HW(Clone) 발사! Mode=Single"
+  },
+  {
+    "timestampUtc": "2026-10-26T13:51:48.4107815Z",
+    "level": "log",
+    "message": "[W06_HIT] Concrete #1 projectile=Projectile_Bullet_HW(Clone)"
+  },
+  {
+    "timestampUtc": "2026-10-26T13:51:48.4294627Z",
+    "level": "log",
+    "message": "[Projectile_Bullet_HW(Clone)] 명중: Target_Concrete_HW"
+  }
+]
