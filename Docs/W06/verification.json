@@ -1,0 +1,14 @@
+{
+  "status_label": "로컬 제작·검증 완료 / GitHub Push 인증 대기",
+  "verification_date": "2026.10.26",
+  "checks": [
+    ["실제 사격·충돌", "통과", "수업 총 3발 + 자동 시연 15발. 금속·목재·콘크리트 각 6회 적중."],
+    ["재질별 외형", "통과", "11.4-11.6초 목재 조각 소멸, 18.7-19.0초 콘크리트 파편·탄흔 확인."],
+    ["스파크·트레일", "통과", "4.10초 금속 스파크와 11.28초 총알 궤적 확인."],
+    ["씬·Console", "통과", "누락 MonoBehaviour 0. 에디터 재실행 후 컴파일 실패 없음, 오류 0·경고 0."],
+    ["Unity Recorder", "완료", "Completed / 852프레임 / 15발. 자동 시연 demoComplete=true."]
+  ],
+  "video_file": "Deliverables/W06_202202842.mp4 / H.264, 1920x1080, 30fps, 28.37초 / 16,541,150 bytes",
+  "submission_state": "PC Git 로그인 필요 - W06 브랜치 Push 인증 대기",
+  "additional_observations": []
+}

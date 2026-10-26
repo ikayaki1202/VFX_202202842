@@ -18,6 +18,11 @@
 
 # Recordings can get excessive in size
 /[Rr]ecordings/
+/Deliverables/
+/Docs/W06/renders/
+/Docs/W06/frames/
+/Docs/W06/qa/
+/*.lnk
 
 # Uncomment this line if you wish to ignore the asset store tools plugin
 # /[Aa]ssets/AssetStoreTools*

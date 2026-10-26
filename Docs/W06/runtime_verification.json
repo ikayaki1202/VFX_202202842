@@ -1,0 +1,30 @@
+{
+  "scene": "Assets/W06_HW/W06_HW.unity",
+  "frame": 27752,
+  "recordedShots": 15,
+  "manualRifleShots": 3,
+  "totalHitsByMaterial": {
+    "Concrete": 6,
+    "Wood": 6,
+    "Metal": 6
+  },
+  "showcaseHitsByMaterial": {
+    "Concrete": 5,
+    "Wood": 5,
+    "Metal": 5
+  },
+  "demoComplete": true,
+  "recorder": {
+    "state": "Completed",
+    "recording": false,
+    "demoComplete": true,
+    "shotsFired": 15,
+    "frameCount": 852,
+    "nominalDurationSeconds": 28.399999618530273,
+    "wallSeconds": 0.0,
+    "output": "C:/Users/게임-532-159/Desktop/codex_VFX_W06/Deliverables/W06_202202842.mp4",
+    "fileExists": true,
+    "fileBytes": 16541150,
+    "error": ""
+  }
+}
