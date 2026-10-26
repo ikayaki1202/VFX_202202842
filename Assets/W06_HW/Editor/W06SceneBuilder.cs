@@ -133,9 +133,7 @@ namespace W06Homework
             RenderSettings.ambientMode=AmbientMode.Trilight; RenderSettings.ambientSkyColor=new Color(.3f,.36f,.43f); RenderSettings.ambientEquatorColor=new Color(.18f,.21f,.25f); RenderSettings.ambientGroundColor=new Color(.08f,.09f,.12f); RenderSettings.fog=false; RenderSettings.skybox=null;
             ConfigurePipeline();
             var vol=new GameObject("Lab post processing").AddComponent<Volume>(); vol.isGlobal=true;
-            var profile=ScriptableObject.CreateInstance<VolumeProfile>(); AssetDatabase.CreateAsset(profile,Root+"Render/Lab_Volume.asset");
-            profile.Add<Bloom>().intensity.Override(.32f); profile.TryGet<Bloom>(out var bloom); bloom.threshold.Override(1.05f); bloom.scatter.Override(.55f);
-            profile.Add<Tonemapping>().mode.Override(TonemappingMode.ACES); vol.sharedProfile=profile;
+            var profile=Load<VolumeProfile>(Root+"Render/Lab_Volume.asset"); vol.sharedProfile=profile;
             var session=new GameObject("W06 Lab Session").AddComponent<W06LabSession>(); session.zoneOrigin=Origin;
             var names=new[]{"Metal","Wood","Concrete"}; var targets=new List<Transform>();
             for(int i=0;i<3;i++)
@@ -161,7 +159,7 @@ namespace W06Homework
             EditorSceneManager.SaveScene(scene,Root+"W06_HW.unity"); EditorBuildSettings.scenes=new[]{new EditorBuildSettingsScene(Root+"W06_HW.unity",true)};
             AssetDatabase.SaveAssets();
             if(SceneView.lastActiveSceneView) SceneView.lastActiveSceneView.LookAt(Origin+new Vector3(0,2,4),Quaternion.Euler(12,0,0),14);
-            return "Saved W06_HW at new lab zone (24,0,-36), three targets and course rifle.";
+            return W06OriginalMapAdapter.Apply();
         }
 
         public static string Polish()

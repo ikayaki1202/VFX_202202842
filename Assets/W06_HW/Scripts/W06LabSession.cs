@@ -13,7 +13,7 @@ namespace W06Homework
         public Camera showcaseCamera;
         public Transform[] targets;
         public TMP_Text statusLabel;
-        public Vector3 zoneOrigin = new Vector3(24, 0, -36);
+        public Vector3 zoneOrigin = new Vector3(-75, 0, 310);
         public bool demoComplete;
         public bool demoRunning;
         public int shotsFired;
