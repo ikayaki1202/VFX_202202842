@@ -1,14 +1,34 @@
 {
-  "status_label": "로컬 제작·검증 완료 / GitHub Push 인증 대기",
+  "status_label": "원본 맵 제작·검증 및 GitHub Push 완료",
   "verification_date": "2026.10.26",
   "checks": [
-    ["실제 사격·충돌", "통과", "수업 총 3발 + 자동 시연 15발. 금속·목재·콘크리트 각 6회 적중."],
-    ["재질별 외형", "통과", "11.4-11.6초 목재 조각 소멸, 18.7-19.0초 콘크리트 파편·탄흔 확인."],
-    ["스파크·트레일", "통과", "4.10초 금속 스파크와 11.28초 총알 궤적 확인."],
-    ["씬·Console", "통과", "누락 MonoBehaviour 0. 에디터 재실행 후 컴파일 실패 없음, 오류 0·경고 0."],
-    ["Unity Recorder", "완료", "Completed / 852프레임 / 15발. 자동 시연 demoComplete=true."]
+    [
+      "실제 사격·충돌",
+      "통과",
+      "수업 총 3발 + 자동 시연 15발. 금속·목재·콘크리트 각 6회 적중."
+    ],
+    [
+      "재질별 외형",
+      "통과",
+      "새 맵 영상 11.4-11.8초 목재 조각 소멸, 18.7-19.0초 콘크리트 파편·탄흔 확인."
+    ],
+    [
+      "스파크·트레일",
+      "통과",
+      "새 맵의 금속 스파크와 총알 궤적을 녹화 프레임에서 확인."
+    ],
+    [
+      "씬·컴파일",
+      "통과",
+      "원본 배경 14개 루트·3,113개 Transform 보존. 누락 MonoBehaviour 0, 컴파일 실패 없음."
+    ],
+    [
+      "Unity Recorder",
+      "완료",
+      "Completed / 852프레임 / 15발. 자동 시연 demoComplete=true."
+    ]
   ],
-  "video_file": "Deliverables/W06_202202842.mp4 / H.264, 1920x1080, 30fps, 28.37초 / 16,541,150 bytes",
-  "submission_state": "PC Git 로그인 필요 - W06 브랜치 Push 인증 대기",
+  "video_file": "Deliverables/W06_202202842.mp4 / H.264, 1920x1080, 30fps, 28.37초 / 30,333,119 bytes",
+  "submission_state": "원본 맵 구현 fc5974e Push 완료 / 원격 W06 일치 / https://github.com/ikayaki1202/VFX_202202842/tree/W06",
   "additional_observations": []
 }
